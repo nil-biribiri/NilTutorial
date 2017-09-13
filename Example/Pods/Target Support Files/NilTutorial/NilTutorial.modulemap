@@ -1,0 +1,6 @@
+framework module NilTutorial {
+  umbrella header "NilTutorial-umbrella.h"
+
+  export *
+  module * { export * }
+}
