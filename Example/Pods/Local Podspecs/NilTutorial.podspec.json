@@ -13,6 +13,7 @@
   },
   "source": {
     "git": "https://github.com/nil-biribiri/NilTutorial.git",
+    "branch": "master",
     "tag": "0.1.0"
   },
   "platforms": {
