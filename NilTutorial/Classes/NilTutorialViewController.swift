@@ -130,8 +130,8 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let firstCell = collectionView.visibleCells.first{
-            pageControl.currentPage = (collectionView.indexPath(for: firstCell)?.row)!
+        if let lastCell = collectionView.visibleCells.last{
+            pageControl.currentPage = (collectionView.indexPath(for: lastCell)?.row)!
         }
     }
 }
