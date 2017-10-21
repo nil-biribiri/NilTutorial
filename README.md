@@ -33,7 +33,7 @@ Local images set
 ```swift
   let tutorialVC = NilTutorialViewController(imagesSet: []) {
             // Add action afer skip button pressed here
-          !!!")
+          
         }
 ```
 
