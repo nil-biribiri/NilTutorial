@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '9.0'
 
-  s.source_files = 'NilTutorial/Classes/**/*'
+  s.source_files = 'NilTutorial/Classes/*'
   
   # s.resource_bundles = {
   #   'NilTutorial' => ['NilTutorial/Assets/*.png']

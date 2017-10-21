@@ -1,5 +1,5 @@
 PODS:
-  - NilTutorial (0.1.0)
+  - NilTutorial (0.1.6)
 
 DEPENDENCIES:
   - NilTutorial (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  NilTutorial: 4d40954e99a1046d4ade65358da1ff21d18201f3
+  NilTutorial: df3ac6870c7f30512fe98378a565ae452c7199eb
 
 PODFILE CHECKSUM: 3f0c3c0f673843a50e7a04e4f7beace11b25f71b
 
