@@ -19,5 +19,5 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "NilTutorial/Classes/*"
+  "source_files": "NilTutorial/Classes/**/*"
 }

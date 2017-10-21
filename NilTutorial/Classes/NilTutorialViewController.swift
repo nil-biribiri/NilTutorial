@@ -83,7 +83,7 @@ public final class NilTutorialViewController: UIViewController {
         
         self.imageURLSet = imageURLSet
         self.completion = completion
-
+        
     }
     
     public func hideSkipButton(){
@@ -165,3 +165,5 @@ extension NilTutorialViewController: UICollectionViewDelegateFlowLayout{
         return 0.0
     }
 }
+
+

@@ -1,14 +1,13 @@
 //
-//  UIImageViewExtension.swift
+//  ImageVIew_Extension.swift
 //  NilTutorial
 //
-//  Created by Tanasak Ngerniam on 10/21/2560 BE.
+//  Created by Tanasak Ngerniam on 10/22/2560 BE.
 //
 
 import Foundation
-
 public extension UIImageView {
-    public func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         contentMode = mode
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard
@@ -22,7 +21,7 @@ public extension UIImageView {
             }
             }.resume()
     }
-    public func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
         guard let url = URL(string: link) else { return }
         downloadedFrom(url: url, contentMode: mode)
     }
