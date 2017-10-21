@@ -11,7 +11,8 @@ import UIKit
 public final class NilTutorialViewController: UIViewController {
     
     fileprivate var completion:(() -> ())? = nil
-    fileprivate var imagesSet:[UIImage]? = []
+    fileprivate var imagesSet:[UIImage]?
+    fileprivate var imageURLSet:[String]? 
     fileprivate var imageViewAspect:UIViewContentMode = UIViewContentMode.scaleAspectFill
     fileprivate var skipButtonTextColor:UIColor = UIColor.white
     fileprivate var skipButtonTitle:String = "Skip"
@@ -39,7 +40,7 @@ public final class NilTutorialViewController: UIViewController {
     @IBOutlet fileprivate weak var pageControl:UIPageControl!{
         didSet{
             pageControl.hidesForSinglePage = true
-            pageControl.numberOfPages = self.imagesSet?.count ?? 0
+            pageControl.numberOfPages = self.imagesSet?.count ?? self.imageURLSet?.count ?? 0
         }
     }
     
@@ -74,6 +75,15 @@ public final class NilTutorialViewController: UIViewController {
         
         self.imagesSet = imagesSet
         self.completion = completion
+    }
+    
+    public convenience init(imageURLSet: [String]?, completion: @escaping () -> () ){
+        let bundle = Bundle(for: NilTutorialViewController.self)
+        self.init(nibName: "NilTutorialViewController", bundle: bundle)
+        
+        self.imageURLSet = imageURLSet
+        self.completion = completion
+
     }
     
     public func hideSkipButton(){
@@ -116,13 +126,17 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
                 cell.imageView.contentMode = self.imageViewAspect
                 cell.imageView.image = image
                 return cell
+            }else if let imageURL = self.imageURLSet?[indexPath.row]{
+                cell.imageView.downloadedFrom(link: imageURL, contentMode: self.imageViewAspect)
+                return cell
             }
+            
         }
         return UICollectionViewCell()
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imagesSet?.count ?? 0
+        return self.imagesSet?.count ?? self.imageURLSet?.count ?? 0
     }
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
