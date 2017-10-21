@@ -29,6 +29,24 @@ pod 'NilTutorial'
 
 ## Usages
 
+Local images set
+```swift
+  let tutorialVC = NilTutorialViewController(imagesSet: []) {
+            // Add action afer skip button pressed here
+          !!!")
+        }
+```
+
+Load images set from url (async)
+```swift
+
+let tutorialVC = NilTutorialViewController(imageURLSet: []) {
+            // Add action afer skip button pressed here
+           
+        }
+
+```
+
 In AppDelegate
 ```swift
 
@@ -77,6 +95,18 @@ let tutorialVC = NilTutorialViewController(imagesSet: []) {
         
         self.configureChildViewController(childController: tutorialVC, onView: self.subView, withFadeAnimate: true)      
 ```
+
+## Customization
+
+```swift
+        // Set Skip button title
+        tutorialVC.setSkipButtonTitle(title: )
+        
+        // Set image aspect 
+        tutorialVC.setImageAspect(imageAspect: )
+
+```
+
 
 ## Author
 
