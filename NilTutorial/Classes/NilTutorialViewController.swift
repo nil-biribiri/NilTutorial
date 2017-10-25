@@ -18,16 +18,9 @@ public final class NilTutorialViewController: UIViewController {
     fileprivate var skipButtonTitle:String = "Skip"
     fileprivate var skipButtonIsHide:Bool = false
     fileprivate var showSkipButtonOnlyLastPage:Bool = false
+    fileprivate var skipButtonCGRect:CGRect?
     
-    
-    @IBOutlet public weak var skipButton:UIButton!{
-        didSet{
-            skipButton.setTitleColor(self.skipButtonTextColor, for: .normal)
-            skipButton.setTitle(self.skipButtonTitle, for: .normal)
-            skipButton.isHidden = self.skipButtonIsHide
-            skipButton.isHidden = self.showSkipButtonOnlyLastPage
-        }
-    }
+    public var skipButton = UIButton()
     
     @IBOutlet fileprivate weak var collectionView:UICollectionView!{
         didSet{
@@ -50,6 +43,7 @@ public final class NilTutorialViewController: UIViewController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupSkipButton()
         // Do any additional setup after loading the view.
     }
     
@@ -70,6 +64,21 @@ public final class NilTutorialViewController: UIViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
+    }
+    
+    fileprivate func setupSkipButton(){
+        DispatchQueue.main.async {
+            self.skipButton.frame = self.skipButtonCGRect ?? CGRect(x: self.view.frame.width - 70, y: 30, width: 60, height: 30)
+        }
+        skipButton.setTitleColor(self.skipButtonTextColor, for: .normal)
+        skipButton.setTitle(self.skipButtonTitle, for: .normal)
+        skipButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        skipButton.titleLabel?.lineBreakMode = .byClipping
+        skipButton.isHidden = self.skipButtonIsHide
+        skipButton.isHidden = self.showSkipButtonOnlyLastPage
+        skipButton.addTarget(self, action: #selector(skipButtonDidPress), for: .touchUpInside)
+        self.view.addSubview(skipButton)
+        
     }
     
     deinit {
@@ -97,6 +106,10 @@ public final class NilTutorialViewController: UIViewController {
         self.showSkipButtonOnlyLastPage = true
     }
     
+    public func setSkipButtonCGRect(cgRect: CGRect){
+        self.skipButtonCGRect = cgRect
+    }
+    
     public func hideSkipButton(){
         self.skipButtonIsHide = true
     }
@@ -117,7 +130,7 @@ public final class NilTutorialViewController: UIViewController {
         self.imageViewAspect = imageAspect
     }
     
-    @IBAction func skipButtonDidPress(_ sender: Any) {
+    @objc fileprivate func skipButtonDidPress() {
         
         self.dismiss(animated: true, completion: nil)
         
@@ -155,9 +168,15 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
     }
     
     
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    public func scrollViewDidScroll(_ scrollView:UIScrollView) {
+        let midX:CGFloat = scrollView.bounds.midX
+        let midY:CGFloat = scrollView.bounds.midY
+        let point:CGPoint = CGPoint(x:midX, y:midY)
         
-        if self.showSkipButtonOnlyLastPage{
+        guard
+            let indexPath:IndexPath = collectionView.indexPathForItem(at:point)
+            else{ return }
+        if self.showSkipButtonOnlyLastPage {
             if indexPath.row == ((self.imagesSet?.count ?? self.imageURLSet?.count ?? 0) - 1 ){
                 self.skipButton.isHidden = false
             }else{
@@ -166,14 +185,6 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
         }
         pageControl.currentPage = indexPath.row
     }
-    
-    
-    //    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    //        if let lastCell = collectionView.visibleCells.last{
-    //            pageControl.currentPage = (collectionView.indexPath(for: lastCell)?.row)!
-    //        }
-    //    }
-    
     
 }
 

@@ -24,7 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
             self.window?.rootViewController = mainVC
         }
-        tutorialVC.showSkipButtonLastPage()
         self.window?.rootViewController = tutorialVC
         
         return true

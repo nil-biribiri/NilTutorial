@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="collectionView" destination="LfW-NA-PQS" id="R8M-Wn-HnC"/>
                 <outlet property="pageControl" destination="tXu-r7-epZ" id="CbX-KP-sAH"/>
-                <outlet property="skipButton" destination="nTw-c7-lVs" id="407-Ba-7Sr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,25 +33,14 @@
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="tXu-r7-epZ">
                     <rect key="frame" x="168" y="620" width="39" height="37"/>
                 </pageControl>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTw-c7-lVs">
-                    <rect key="frame" x="335" y="30" width="30" height="30"/>
-                    <state key="normal" title="Skip">
-                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="skipButtonDidPress:" destination="-1" eventType="touchUpInside" id="Xoy-Ct-dIr"/>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="tXu-r7-epZ" secondAttribute="bottom" constant="10" id="3pI-Um-usu"/>
-                <constraint firstAttribute="trailing" secondItem="nTw-c7-lVs" secondAttribute="trailing" constant="10" id="7JP-rw-CWi"/>
                 <constraint firstItem="LfW-NA-PQS" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="BQv-f0-7Y5"/>
                 <constraint firstItem="tXu-r7-epZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WxW-8N-owI"/>
                 <constraint firstItem="LfW-NA-PQS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YuF-0f-4IG"/>
                 <constraint firstItem="LfW-NA-PQS" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="aMa-Od-PbK"/>
                 <constraint firstItem="LfW-NA-PQS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bGg-iA-ISF"/>
-                <constraint firstItem="nTw-c7-lVs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="tfy-w0-ahl"/>
             </constraints>
         </view>
     </objects>
