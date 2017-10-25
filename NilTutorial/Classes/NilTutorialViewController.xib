@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,7 +18,7 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+        <view clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -47,11 +47,11 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="tXu-r7-epZ" secondAttribute="bottom" constant="10" id="3pI-Um-usu"/>
                 <constraint firstAttribute="trailing" secondItem="nTw-c7-lVs" secondAttribute="trailing" constant="10" id="7JP-rw-CWi"/>
-                <constraint firstItem="LfW-NA-PQS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="82L-Sd-aJX"/>
-                <constraint firstItem="LfW-NA-PQS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Kr9-oF-wdI"/>
+                <constraint firstItem="LfW-NA-PQS" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="BQv-f0-7Y5"/>
                 <constraint firstItem="tXu-r7-epZ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="WxW-8N-owI"/>
-                <constraint firstAttribute="bottom" secondItem="LfW-NA-PQS" secondAttribute="bottom" id="dHm-GV-DGo"/>
-                <constraint firstAttribute="trailing" secondItem="LfW-NA-PQS" secondAttribute="trailing" id="onl-hU-fPT"/>
+                <constraint firstItem="LfW-NA-PQS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="YuF-0f-4IG"/>
+                <constraint firstItem="LfW-NA-PQS" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="aMa-Od-PbK"/>
+                <constraint firstItem="LfW-NA-PQS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="bGg-iA-ISF"/>
                 <constraint firstItem="nTw-c7-lVs" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="30" id="tfy-w0-ahl"/>
             </constraints>
         </view>

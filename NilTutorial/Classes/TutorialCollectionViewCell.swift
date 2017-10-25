@@ -17,6 +17,8 @@ class TutorialCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.preservesSuperviewLayoutMargins = false
+        self.layoutMargins = .zero
     }
 
 }

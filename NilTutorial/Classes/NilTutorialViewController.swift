@@ -18,7 +18,7 @@ public final class NilTutorialViewController: UIViewController {
     fileprivate var skipButtonTitle:String = "Skip"
     fileprivate var skipButtonIsHide:Bool = false
     
-    @IBOutlet fileprivate weak var skipButton:UIButton!{
+    @IBOutlet public weak var skipButton:UIButton!{
         didSet{
             skipButton.setTitleColor(self.skipButtonTextColor, for: .normal)
             skipButton.setTitle(self.skipButtonTitle, for: .normal)
@@ -30,8 +30,8 @@ public final class NilTutorialViewController: UIViewController {
         didSet{
             collectionView.delegate = self
             collectionView.dataSource = self
+
             let bundle = Bundle(for: NilTutorialViewController.self)
-            
             let nibName = UINib(nibName: TutorialCollectionViewCell.cellIdentifier, bundle:bundle)
             collectionView.register(nibName, forCellWithReuseIdentifier: TutorialCollectionViewCell.cellIdentifier)
         }
@@ -50,6 +50,11 @@ public final class NilTutorialViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override public func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
@@ -62,7 +67,6 @@ public final class NilTutorialViewController: UIViewController {
     override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-        
     }
     
     deinit {
@@ -151,6 +155,7 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension NilTutorialViewController: UICollectionViewDelegateFlowLayout{
+ 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
@@ -164,6 +169,8 @@ extension NilTutorialViewController: UICollectionViewDelegateFlowLayout{
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
+    
+
 }
 
 
