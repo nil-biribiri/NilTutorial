@@ -17,12 +17,15 @@ public final class NilTutorialViewController: UIViewController {
     fileprivate var skipButtonTextColor:UIColor = UIColor.white
     fileprivate var skipButtonTitle:String = "Skip"
     fileprivate var skipButtonIsHide:Bool = false
+    fileprivate var showSkipButtonOnlyLastPage:Bool = false
+    
     
     @IBOutlet public weak var skipButton:UIButton!{
         didSet{
             skipButton.setTitleColor(self.skipButtonTextColor, for: .normal)
             skipButton.setTitle(self.skipButtonTitle, for: .normal)
             skipButton.isHidden = self.skipButtonIsHide
+            skipButton.isHidden = self.showSkipButtonOnlyLastPage
         }
     }
     
@@ -30,7 +33,7 @@ public final class NilTutorialViewController: UIViewController {
         didSet{
             collectionView.delegate = self
             collectionView.dataSource = self
-
+            
             let bundle = Bundle(for: NilTutorialViewController.self)
             let nibName = UINib(nibName: TutorialCollectionViewCell.cellIdentifier, bundle:bundle)
             collectionView.register(nibName, forCellWithReuseIdentifier: TutorialCollectionViewCell.cellIdentifier)
@@ -90,6 +93,10 @@ public final class NilTutorialViewController: UIViewController {
         
     }
     
+    public func showSkipButtonLastPage(){
+        self.showSkipButtonOnlyLastPage = true
+    }
+    
     public func hideSkipButton(){
         self.skipButtonIsHide = true
     }
@@ -147,15 +154,31 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
         return 1
     }
     
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let lastCell = collectionView.visibleCells.last{
-            pageControl.currentPage = (collectionView.indexPath(for: lastCell)?.row)!
+    
+    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if self.showSkipButtonOnlyLastPage{
+            if indexPath.row == ((self.imagesSet?.count ?? self.imageURLSet?.count ?? 0) - 1 ){
+                self.skipButton.isHidden = false
+            }else{
+                self.skipButton.isHidden = true
+            }
         }
+        pageControl.currentPage = indexPath.row
     }
+    
+    
+    //    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    //        if let lastCell = collectionView.visibleCells.last{
+    //            pageControl.currentPage = (collectionView.indexPath(for: lastCell)?.row)!
+    //        }
+    //    }
+    
+    
 }
 
 extension NilTutorialViewController: UICollectionViewDelegateFlowLayout{
- 
+    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
@@ -170,7 +193,4 @@ extension NilTutorialViewController: UICollectionViewDelegateFlowLayout{
         return 0.0
     }
     
-
 }
-
-
