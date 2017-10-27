@@ -52,20 +52,6 @@ public final class NilTutorialViewController: UIViewController {
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
-    override public func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-    }
-    
-    override public var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    override public func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
-    }
-    
     fileprivate func setupSkipButton(){
         DispatchQueue.main.async {
             self.skipButton.frame = self.skipButtonCGRect ?? CGRect(x: self.view.frame.width - 70, y: 30, width: 60, height: 30)
@@ -176,13 +162,16 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
         guard
             let indexPath:IndexPath = collectionView.indexPathForItem(at:point)
             else{ return }
-        if self.showSkipButtonOnlyLastPage {
+        if self.showSkipButtonOnlyLastPage{
             if indexPath.row == ((self.imagesSet?.count ?? self.imageURLSet?.count ?? 0) - 1 ){
                 self.skipButton.isHidden = false
             }else{
                 self.skipButton.isHidden = true
             }
+        }else{
+            self.skipButtonIsHide ? (self.skipButton.isHidden = true) : (self.skipButton.isHidden = false)
         }
+    
         pageControl.currentPage = indexPath.row
     }
     

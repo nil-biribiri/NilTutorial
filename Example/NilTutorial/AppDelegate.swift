@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Skip Button Pressed!!!")
             let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
             self.window?.rootViewController = mainVC
-        }
+        }        
         self.window?.rootViewController = tutorialVC
         
         return true
