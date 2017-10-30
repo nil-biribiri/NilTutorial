@@ -101,10 +101,28 @@ let tutorialVC = NilTutorialViewController(imagesSet: []) {
 ```swift
         // Set Skip button title
         tutorialVC.setSkipButtonTitle(title: )
+
+
+        // Hide Skip button
+        tutorialVC.hideSkipButton()
+
+
+        // Show skip button only last page
+        tutorialVC.showSkipButtonLastPage()
+        
+        
+        // Set skip button CGRect
+        tutorialVC.setSkipButtonCGRect(cgRect: )
+        
         
         // Set image aspect 
         tutorialVC.setImageAspect(imageAspect: )
-
+        
+        
+        // You can freely set skipButton property 
+        DispatchQueue.main.async {
+                tutorialVC.skipButton.backgroundColor = UIColor.black
+        }
 ```
 
 
