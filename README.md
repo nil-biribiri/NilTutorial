@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/NilTutorial.svg?style=flat)](http://cocoapods.org/pods/NilTutorial)
 [![Platform](https://img.shields.io/cocoapods/p/NilTutorial.svg?style=flat)](http://cocoapods.org/pods/NilTutorial)
 
-Create app tutorial view using UICollectionView
+Create app tutorial view using UICollectionView and a lot of Customization !!!
 
 ![Preview](https://thumbs.gfycat.com/HarmlessPoshBoa-size_restricted.gif)
 
@@ -101,10 +101,28 @@ let tutorialVC = NilTutorialViewController(imagesSet: []) {
 ```swift
         // Set Skip button title
         tutorialVC.setSkipButtonTitle(title: )
+
+
+        // Hide Skip button
+        tutorialVC.hideSkipButton()
+
+
+        // Show skip button only last page
+        tutorialVC.showSkipButtonLastPage()
+        
+        
+        // Set skip button CGRect
+        tutorialVC.setSkipButtonCGRect(cgRect: )
+        
         
         // Set image aspect 
         tutorialVC.setImageAspect(imageAspect: )
-
+        
+        
+        // You can freely set skipButton property 
+        DispatchQueue.main.async {
+                tutorialVC.skipButton.backgroundColor = UIColor.black
+        }
 ```
 
 
