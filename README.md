@@ -99,6 +99,14 @@ let tutorialVC = NilTutorialViewController(imagesSet: []) {
 ## Customization
 
 ```swift
+        // Enable auto scrolling 
+        turorialVC.enableAutoScroll() 
+        
+        
+        // Set scrolling time interval
+        tutorialVC.setAutoScrollTime(seconds: )
+        
+        
         // Set Skip button title
         tutorialVC.setSkipButtonTitle(title: )
 
