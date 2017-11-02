@@ -18,12 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        
-        let tutorialVC = NilTutorialViewController(imagesSet: [#imageLiteral(resourceName: "Invoker_1"),#imageLiteral(resourceName: "Invoker_2"),#imageLiteral(resourceName: "Invoker_3")]) {
+        let tutorialVC = NilTutorialViewController(imagesSet: [#imageLiteral(resourceName: "Invoker_1"),#imageLiteral(resourceName: "Invoker_2"),#imageLiteral(resourceName: "Invoker_3"),#imageLiteral(resourceName: "Invoker_1"),#imageLiteral(resourceName: "Invoker_3")]) {
             // Add action afer skip button pressed here
             print("Skip Button Pressed!!!")
             let mainVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
             self.window?.rootViewController = mainVC
-        }        
+        }
+        tutorialVC.enableAutoScroll()
+        tutorialVC.setAutoScrollTime(seconds: 2.0)
         self.window?.rootViewController = tutorialVC
         
         return true
