@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/NilTutorial.svg?style=flat)](http://cocoapods.org/pods/NilTutorial)
 [![Platform](https://img.shields.io/cocoapods/p/NilTutorial.svg?style=flat)](http://cocoapods.org/pods/NilTutorial)
 
-Create app tutorial view using UICollectionView and a lot of Customization !!!
+Create app tutorial view using UICollectionView and a lot of Customization (Including auto scroll)!!!
 
 ![Preview](https://thumbs.gfycat.com/HarmlessPoshBoa-size_restricted.gif)
 
@@ -99,6 +99,14 @@ let tutorialVC = NilTutorialViewController(imagesSet: []) {
 ## Customization
 
 ```swift
+        // Enable auto scrolling 
+        turorialVC.enableAutoScroll() 
+        
+        
+        // Set scrolling time interval
+        tutorialVC.setAutoScrollTime(seconds: )
+        
+        
         // Set Skip button title
         tutorialVC.setSkipButtonTitle(title: )
 
