@@ -19,6 +19,14 @@ public final class NilTutorialViewController: UIViewController {
     fileprivate var skipButtonIsHide:Bool = false
     fileprivate var showSkipButtonOnlyLastPage:Bool = false
     fileprivate var skipButtonCGRect:CGRect?
+    fileprivate var scrollTime:Double = 5.0
+    fileprivate var autoScrollIsEnabled:Bool = false
+    
+    fileprivate var timer:Timer? = nil {
+        willSet {
+            timer?.invalidate()
+        }
+    }
     
     public var skipButton = UIButton()
     
@@ -44,12 +52,37 @@ public final class NilTutorialViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupSkipButton()
+        autoScrollIsEnabled ? setupScrollTimer() : ()
+        
         // Do any additional setup after loading the view.
     }
     
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)        
+        timer?.invalidate()
+
+    }
+    
+    @objc fileprivate func moveScreen() {
+        guard self.imagesSet?.count ?? self.imageURLSet?.count ?? 0 > 0 else {
+            return
+        }
+        var scrollPage = pageControl.currentPage
+        if pageControl.currentPage + 1 == self.imagesSet?.count ?? self.imageURLSet?.count ?? 0{
+            scrollPage = -1
+        }
+        scrollPage = scrollPage + 1
+        self.collectionView.scrollToItem(at: IndexPath(item: scrollPage, section: 0), at: .right, animated: true)
+    }
+    
+    fileprivate func setupScrollTimer(){
+        self.timer = Timer.scheduledTimer(timeInterval: self.scrollTime, target: self, selector: #selector(self.moveScreen), userInfo: nil, repeats: true)
+        
     }
     
     fileprivate func setupSkipButton(){
@@ -86,6 +119,14 @@ public final class NilTutorialViewController: UIViewController {
         self.imageURLSet = imageURLSet
         self.completion = completion
         
+    }
+    
+    public func enableAutoScroll(){
+        self.autoScrollIsEnabled = true
+    }
+    
+    public func setAutoScrollTime(seconds autoScrollTime: Double){
+        self.scrollTime = autoScrollTime
     }
     
     public func showSkipButtonLastPage(){
@@ -171,7 +212,7 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
         }else{
             self.skipButtonIsHide ? (self.skipButton.isHidden = true) : (self.skipButton.isHidden = false)
         }
-    
+        
         pageControl.currentPage = indexPath.row
     }
     

@@ -8,12 +8,12 @@
 
 Pod::Spec.new do |s|
   s.name             = 'NilTutorial'
-  s.version          = '0.2.1'
+  s.version          = '0.2.3'
   s.summary          = 'Create app tutorial view using UICollectionView'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
+#   * Try to keep it short, snappy and to the poit.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
