@@ -41,7 +41,7 @@ public final class NilTutorialViewController: UIViewController {
         }
     }
     
-    @IBOutlet fileprivate weak var pageControl:UIPageControl!{
+    @IBOutlet public weak var pageControl:UIPageControl!{
         didSet{
             pageControl.hidesForSinglePage = true
             pageControl.numberOfPages = self.imagesSet?.count ?? self.imageURLSet?.count ?? 0
@@ -52,10 +52,16 @@ public final class NilTutorialViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupSkipButton()
-        autoScrollIsEnabled ? setupScrollTimer() : ()
         
         // Do any additional setup after loading the view.
     }
+    
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // setup auto scroll
+        autoScrollIsEnabled ? setupScrollTimer() : ()
+    }
+    
     
     override public func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -94,7 +100,6 @@ public final class NilTutorialViewController: UIViewController {
         skipButton.titleLabel?.adjustsFontSizeToFitWidth = true
         skipButton.titleLabel?.lineBreakMode = .byClipping
         skipButton.isHidden = self.skipButtonIsHide
-        skipButton.isHidden = self.showSkipButtonOnlyLastPage
         skipButton.addTarget(self, action: #selector(skipButtonDidPress), for: .touchUpInside)
         self.view.addSubview(skipButton)
         
