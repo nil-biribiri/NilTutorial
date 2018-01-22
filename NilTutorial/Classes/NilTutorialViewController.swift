@@ -21,7 +21,6 @@ public final class NilTutorialViewController: UIViewController {
     fileprivate var skipButtonCGRect:CGRect?
     fileprivate var scrollTime:Double = 5.0
     fileprivate var autoScrollIsEnabled:Bool = false
-    
     fileprivate var timer:Timer? = nil {
         willSet {
             timer?.invalidate()
@@ -29,6 +28,7 @@ public final class NilTutorialViewController: UIViewController {
     }
     
     public var skipButton = UIButton()
+    public var placeHolderColor: UIColor = UIColor.black
     
     @IBOutlet fileprivate weak var collectionView:UICollectionView!{
         didSet{
@@ -45,6 +45,8 @@ public final class NilTutorialViewController: UIViewController {
         didSet{
             pageControl.hidesForSinglePage = true
             pageControl.numberOfPages = self.imagesSet?.count ?? self.imageURLSet?.count ?? 0
+            pageControl.isUserInteractionEnabled = false
+
         }
     }
     
@@ -126,6 +128,10 @@ public final class NilTutorialViewController: UIViewController {
         
     }
     
+    public func invalidateTimer() {
+        self.timer?.invalidate()
+    }
+    
     public func enableAutoScroll(){
         self.autoScrollIsEnabled = true
     }
@@ -181,12 +187,11 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
             if let image = self.imagesSet?[indexPath.row]{
                 cell.imageView.contentMode = self.imageViewAspect
                 cell.imageView.image = image
-                return cell
             }else if let imageURL = self.imageURLSet?[indexPath.row]{
                 cell.imageView.downloadedFrom(link: imageURL, contentMode: self.imageViewAspect)
-                return cell
             }
-            
+            cell.imageView.backgroundColor = placeHolderColor
+            return cell
         }
         return UICollectionViewCell()
     }
