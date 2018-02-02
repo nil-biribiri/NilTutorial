@@ -38,6 +38,7 @@ public final class NilTutorialViewController: UIViewController {
             let bundle = Bundle(for: NilTutorialViewController.self)
             let nibName = UINib(nibName: TutorialCollectionViewCell.cellIdentifier, bundle:bundle)
             collectionView.register(nibName, forCellWithReuseIdentifier: TutorialCollectionViewCell.cellIdentifier)
+            collectionView.backgroundColor = placeHolderColor
         }
     }
     
@@ -51,11 +52,8 @@ public final class NilTutorialViewController: UIViewController {
     }
     
     override public func viewDidLoad() {
-        super.viewDidLoad()
-        
+        super.viewDidLoad()        
         self.setupSkipButton()
-        
-        // Do any additional setup after loading the view.
     }
     
     override public func viewWillAppear(_ animated: Bool) {
@@ -185,11 +183,11 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier:TutorialCollectionViewCell.cellIdentifier, for: indexPath) as? TutorialCollectionViewCell {
             
             if let image = self.imagesSet?[indexPath.row]{
-                cell.imageView.contentMode = self.imageViewAspect
                 cell.imageView.image = image
             }else if let imageURL = self.imageURLSet?[indexPath.row]{
                 cell.imageView.downloadedFrom(link: imageURL, contentMode: self.imageViewAspect)
             }
+            cell.imageView.contentMode = self.imageViewAspect
             cell.imageView.backgroundColor = placeHolderColor
             return cell
         }
@@ -203,7 +201,6 @@ extension NilTutorialViewController: UICollectionViewDelegate, UICollectionViewD
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-    
     
     public func scrollViewDidScroll(_ scrollView:UIScrollView) {
         let midX:CGFloat = scrollView.bounds.midX
@@ -238,7 +235,6 @@ extension NilTutorialViewController: UICollectionViewDelegateFlowLayout{
         
         return CGSize(width: self.collectionView.bounds.width, height: self.collectionView.bounds.height)
     }
-    
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
